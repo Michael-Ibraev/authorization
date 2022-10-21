@@ -7,10 +7,10 @@ import java.util.Properties;
 public class DB {
 
     // Replace below database url, username and password with your actual database credentials
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/cpkio?useSSL=false";
-    private static final String DATABASE_USERNAME = "roott";
-     private static final String DATABASE_PASSWORD = "1234";
-    private static final String SELECT_QUERY = "SELECT * FROM `employees` WHERE login = ? and password = ?";
+    private static final String DATABASE_URL = "jdbc:mysql://172.16.225.104:3306/user22?useSSL=false";
+    private static final String DATABASE_USERNAME = "user22";
+    private static final String DATABASE_PASSWORD = "37354";
+    private static final String SELECT_QUERY = "SELECT * FROM `employees` WHERE Login = ? and Password = ?";
 
     public boolean validate(String login, String password) throws SQLException {
 
@@ -20,7 +20,7 @@ public class DB {
                 .getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 
              // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY)) {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
 
@@ -30,7 +30,6 @@ public class DB {
             if (resultSet.next()) {
                 return true;
             }
-
 
         } catch (SQLException e) {
             // print SQL exception information
@@ -52,6 +51,9 @@ public class DB {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                profile.surName= resultSet.getString(3).split(" ")[0];
+                profile.fio = resultSet.getString(3);
+                profile.dolger = resultSet.getString(2);
                 return resultSet.getString(3)+", "+resultSet.getString(2);
             }
 
@@ -60,6 +62,8 @@ public class DB {
             printSQLException(e);
         }
         return "Failed";
+
+
     }
 
     public static void printSQLException(SQLException ex) {
@@ -77,7 +81,6 @@ public class DB {
             }
         }
     }
-
 }
 
 

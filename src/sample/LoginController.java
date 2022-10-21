@@ -2,10 +2,16 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController {
@@ -26,7 +32,7 @@ public class LoginController {
     private TextField passwordHidden;
 
     @FXML
-    public void login(ActionEvent event) throws SQLException {
+    public void login(ActionEvent event) throws SQLException, IOException {
 
         Window owner = submitButton.getScene().getWindow();
 
@@ -54,8 +60,17 @@ public class LoginController {
             infoBox("Please enter correct Login and Password", null, "Failed");
         } else {
 
-            infoBox(db.getEmpInfo(login, password), null, "Success");
-        }
+            db.getEmpInfo(login, password);
+
+            Stage ptage = new Stage();
+
+            Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+            ptage.setTitle("Прокат");
+            ptage.setScene(new Scene(root, 1000, 800));
+            ptage.show();
+            ptage.setResizable(false);
+
+            ((Node)(event.getSource())).getScene().getWindow().hide();        }
     }
 
     public static void infoBox(String infoMessage, String headerText, String title) {

@@ -78,12 +78,12 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="localhost" />
+          <host value="172.16.225.104" />
           <port value="3306" />
-          <database value="CPKiO" />
+          <database value="user22" />
           <type value="USER_PASSWORD" />
-          <user value="root" />
-          <deprecated-pwd value="MTIzNA==" />
+          <user value="user22" />
+          <deprecated-pwd value="MzczNTQ=" />
         </database>
         <properties>
           <auto-commit value="false" />
