@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -31,6 +32,9 @@ public class LoginController {
 
     @FXML
     private TextField passwordHidden;
+
+    int enter_counter = 0;
+
 
     @FXML
     public void login(ActionEvent event) throws SQLException, IOException {
@@ -57,10 +61,26 @@ public class LoginController {
         DB db = new DB();
         boolean flag = db.validate(login, password);
 
-        if (!flag) {
-            infoBox("Please enter correct Login and Password", null, "Failed");
-        } else {
 
+        if (!flag) {
+            if(enter_counter>1){
+            new Thread(()->{
+                submitButton.setDisable(true);
+                try {
+                    Thread.sleep(3000);
+                    submitButton.setDisable(false);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+            infoBox("Please enter correct Login and Password", null, "Failed");
+            System.out.println("counter: "+enter_counter);
+            enter_counter++;
+
+
+        }
+        else {
             db.getEmpInfo(login, password);
 
             Stage stage = new Stage();
@@ -72,8 +92,11 @@ public class LoginController {
             stage.show();
             stage.setResizable(false);
 
-            ((Node)(event.getSource())).getScene().getWindow().hide();        }
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
     }
+
+
 
     public static void infoBox(String infoMessage, String headerText, String title) {
         Alert alert = new Alert(AlertType.CONFIRMATION);

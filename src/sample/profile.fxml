@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="541.0"
-            xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.profile">
+<AnchorPane fx:id="exitBtn" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.profile">
     <children>
-        <ImageView fx:id="photo" fitHeight="241.0" fitWidth="244.0" layoutX="221.0" layoutY="86.0" pickOnBounds="true"
-                   preserveRatio="true" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="40.0" />
-        <Text fx:id="textHi" layoutX="36.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              wrappingWidth="146.13671875" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="40.0" />
-        <Text fx:id="doljnost" layoutX="36.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              wrappingWidth="116.13671875" />
+        <ImageView fx:id="photo" fitHeight="241.0" fitWidth="244.0" layoutX="221.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="40.0" />
+        <Text fx:id="textHi" layoutX="36.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="146.13671875" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="40.0" />
+        <Text fx:id="doljnost" layoutX="36.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="116.13671875" />
+      <Button fx:id="exitBtn" layoutX="475.0" layoutY="332.0" mnemonicParsing="false" onAction="#exit" text="Выход" />
+      <StackPane fx:id="timer" layoutX="27.0" layoutY="320.0" prefHeight="25.0" prefWidth="125.0" />
     </children>
 </AnchorPane>
